@@ -2,3 +2,4 @@ nextcord
 aiohttp
 praw
 akinator.py[async]
+dismusic
