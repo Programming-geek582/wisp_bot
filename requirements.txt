@@ -3,3 +3,4 @@ aiohttp
 praw
 akinator.py[async]
 dismusic
+jishaku
