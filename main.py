@@ -13,7 +13,7 @@ bot.lavalink_nodes = [
 	{"host": "lavalink.islantay.tk", "port": 8880, "password": "waifufufufu"}
 ]
 
-extensions = ['extensions.image','extensions.mod','extensions.owner','extensions.info', 'extensions.handlers', 'extensions.help', 'extensions.minigames', 'extensions.fun', 'dismusic', 'extensions.utils', 'jishaku', 'dislevel']
+extensions = ['extensions.image','extensions.mod','extensions.owner','extensions.info', 'extensions.handlers', 'extensions.help', 'extensions.minigames', 'extensions.fun', 'dismusic', 'extensions.utils', 'jishaku']
 
 @bot.event
 async def on_ready():
