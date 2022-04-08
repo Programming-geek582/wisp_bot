@@ -2,7 +2,6 @@ import os
 import nextcord
 import time
 import webserver
-from dislevel import increase_xp
 from nextcord.ext import commands
 
 bot = commands.Bot(command_prefix=['wisp ', 'w!', 'w.', '!w'], intents=nextcord.Intents.all(), owner_ids=[837730346874306581, 824236988433039391], case_insensitive=True)
@@ -36,9 +35,6 @@ async def on_message(message : nextcord.Message):
             return
         else:
             await message.reply('Stop sending messages in uppercase nab')
-    if not message.author.bot:
-        await increase_xp(message, bot, rate=5)
-        time.sleep(5)
 		
     await bot.process_commands(message)
 
