@@ -29,7 +29,7 @@ class DevForm(nextcord.ui.Modal):
         embed = nextcord.Embed(title="Dev contact", description="Your message was sent successfully", colour=0xff0000)
         embed.set_footer(text=interaction.user.display_name, icon_url=interaction.user.display_avatar)
         await interaction.response.send_message(embed=embed)
-        developer = interaction.client.get_user(837730346874306581)
+        developer = interaction.client.get_channel(943178367837040680)
         embed2 = nextcord.Embed(title=f"New message from {interaction.user}", description=self.description.value, colour=0xff0000)
         embed2.set_footer(text=interaction.user.display_name, icon_url=interaction.user.display_avatar)
         await developer.send(embed=embed2)
