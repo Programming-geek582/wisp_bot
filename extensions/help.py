@@ -7,7 +7,7 @@ from typing import List, Optional
 class Stuff(nextcord.ui.View):
     def __init__(self):
         super().__init__()
-        url = "https://discord.com/api/oauth2/authorize?bot_id=760179628122964008&permissions=8&scope=bot"
+        url = "https://discord.com/api/oauth2/authorize?client_id=935093408953946122&permissions=0&scope=bot%20applications.commands"
         self.add_item(nextcord.ui.Button(emoji="<:invite_art:943174795674157056>", label='Invite me', url=url))
 
 class MyHelp(commands.HelpCommand):
