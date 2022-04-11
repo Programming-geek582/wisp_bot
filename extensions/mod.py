@@ -35,7 +35,6 @@ class Mod(commands.Cog, name="mod"):
     @commands.command(help="Set the slowmode of the current channel")
     @commands.cooldown(1, 30, commands.BucketType.user)
     @commands.has_permissions(manage_guild=True)
-    @commands.bot_has_permissions(manage_guild=True)
     async def slowmode(self, ctx : commands.Context, seconds : int = 0):
         if seconds == 0:
             await ctx.channel.edit(slowmode_delay=0, reason=f"This was done by {ctx.author.display_name} by using the slowmode command.")
