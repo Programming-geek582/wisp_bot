@@ -48,7 +48,7 @@ class Image(commands.Cog, name="image"):
             colour=0xff0000
         )
         embed.set_image(url=pictureJson['link'])
-        embed.set_footer(text=f"Requested by {ctx.author.name}", icon_url=ctx.author.display_avatar)
+        embed.set_footer(text=f"Requested by {ctx.author.name}.", icon_url=ctx.author.display_avatar)
 
         await ctx.send(embed=embed)
 
