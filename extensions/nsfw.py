@@ -1,7 +1,7 @@
 import nextcord
 import datetime
 import aiohttp
-from nextcord.ext import commands, menus
+from nextcord.ext import commands
 from nextcord.ext.commands.cooldowns import BucketType
 
 class NSFW(commands.Cog, name="nsfw"):
