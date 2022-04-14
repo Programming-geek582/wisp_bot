@@ -267,5 +267,54 @@ Original text: {text}
         embed.set_author(name=f"Requested by {ctx.author.name}", icon_url=ctx.author.display_avatar)
         await ctx.reply(embed=embed)
 	
+    @commands.command()
+    @commands.cooldown(1, 30, commands.BucketType.user)
+    async def pokemon(self, ctx : commands.Context, pokemon_name : str = None):
+        if pokemon_name == None:
+            return await ctx.send('You did not provide a pokemon name to search for.')
+
+        r = requests.get(f'https://some-random-api.ml/pokedex?pokemon={pokemon_name}')
+        res = r.json()
+        evolution_line = res['family']['evolutionLine']
+        embed = nextcord.Embed(
+            title=res['name'], 
+            description=f"""Pokemon ID: {res['id']}
+            Type: {''.join(res['type'])}
+            Species:
+            ```yaml
+{'\n'.join(res['species'])}
+            ```
+            Abilities:
+            ```yaml
+{'\n'.join(res['abilities'])}
+            ```
+            Height: {res['height']}
+            Weight: {res['weight']}
+            Base experience: {res['base_experience']}
+            Gender: {''.join(res['gender'])}
+            Egg groups:
+            ```yaml
+{'\n'.join(res['egg_groups'])}
+            ```
+            **Statistics**
+            Health points: {res['stats']['hp']}
+            Attack: {res['stats']['attack']}
+            Defence: {res['stats']['defense']}
+            Sp attack: {res['stats']['sp_atk']}
+            Sp def: {res['stats']['sp_def']}
+            Speed: {res['stats']['speed']}
+            Total: {res['stats']['total']}
+            **Family status**
+            Evolution Stage: {res['family']['evolutionStage']}
+            Evolution line: {evolution_line if evolution_line else "Not found"}
+            Generation: {res['generation']}
+            """, 
+            colour=0xff0000
+        )
+        embed.set_image(url=res['sprites']['animated'])
+        embed.set_footer(text=ctx.author.display_name, icon_url=ctx.author.display_avatar)
+        await ctx.send(embed=embed)
+
+	
 def setup(bot):
     bot.add_cog(Fun(bot))
