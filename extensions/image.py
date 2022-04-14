@@ -495,7 +495,7 @@ class Image(commands.Cog, name="image"):
                     await ctx.send(embed=embed, file=file)
 
     @commands.command(help="Waifu", hidden=True)
-    @commands.is_nsfw()
+    @commands.is_owner()
     @commands.cooldown(1, 5, BucketType.member)
     async def waifu(self, ctx):
         async with aiohttp.ClientSession() as session:
@@ -507,7 +507,7 @@ class Image(commands.Cog, name="image"):
             await ctx.send(embed=embed)
 
     @commands.command(help="Neko")
-    @commands.is_nsfw()
+    @commands.is_owner()
     @commands.cooldown(1, 5, BucketType.member)
     async def neko(self, ctx):
         async with aiohttp.ClientSession() as session:
