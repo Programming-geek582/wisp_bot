@@ -294,21 +294,15 @@ Original text: {text}
         )
         embed.add_field(
             name="Species",
-            value=f"""```yaml
-            {species}
-            ```"""
+            value=species
         )
         embed.add_field(
             name="Abilities",
-            value=f"""```yaml
-            {abilities}
-            ```"""
+            value=abilities
         )
         embed.add_field(
             name="Egg groups",
-            value=f"""```yaml
-            {egg_groups}
-            ```"""
+            value=egg_groups
         )
         embed.add_field(
             name="Statistics",
