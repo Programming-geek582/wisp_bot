@@ -281,43 +281,54 @@ Original text: {text}
         egg_groups = "\n".join(res['egg_groups'])
         embed = nextcord.Embed(
             title=res['name'], 
+            colour=0xff0000
+        )
+        embed.add_field(
+            name="Basic info",
             description=f"""Pokemon ID: {res['id']}
             Type: {''.join(res['type'])}
-            Species:
-            ```yaml
-{species}
-            ```
-            Abilities:
-            ```yaml
-{abilities}
-            ```
             Height: {res['height']}
             Weight: {res['weight']}
             Base experience: {res['base_experience']}
-            Gender: {''.join(res['gender'])}
-            Egg groups:
-            ```yaml
-{egg_groups}
-            ```
-            **Statistics**
-            Health points: {res['stats']['hp']}
+            Gender: {''.join(res['gender'])}"""
+        )
+        embed.add_field(
+            name="Species",
+            value=f"""```yaml
+            {species}
+            ```"""
+        )
+        embed.add_field(
+            name="Abilities",
+            description=f"""```yaml
+            {abilities}
+            ```"""
+        )
+        embed.add_field(
+            title="Egg groups",
+            value=f"""```yaml
+            {egg_groups}
+            ```"""
+        )
+        embed.add_field(
+            name="Statistics",
+            value=f"""Health points: {res['stats']['hp']}
             Attack: {res['stats']['attack']}
             Defence: {res['stats']['defense']}
             Sp attack: {res['stats']['sp_atk']}
             Sp def: {res['stats']['sp_def']}
             Speed: {res['stats']['speed']}
-            Total: {res['stats']['total']}
-            **Family status**
-            Evolution Stage: {res['family']['evolutionStage']}
-            Evolution line: {evolution_line if evolution_line else "Not found"}
-            Generation: {res['generation']}
-            """, 
-            colour=0xff0000
+            Total: {res['stats']['total']}"""
         )
-        embed.set_image(url=res['sprites']['animated'])
+        embed.add_field(
+            name="Family status",
+            value=f"""Evolution Stage: {res['family']['evolutionStage']}
+            Evolution line: {evolution_line if evolution_line else "Not found"}
+            Generation: {res['generation']}"""
+        )
+        embed.set_thumbnail(url=res['sprites']['animated'])
         embed.set_footer(text=ctx.author.display_name, icon_url=ctx.author.display_avatar)
         await ctx.send(embed=embed)
-
 	
 def setup(bot):
     bot.add_cog(Fun(bot))
