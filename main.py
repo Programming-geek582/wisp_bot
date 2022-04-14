@@ -1,6 +1,7 @@
 import os
 import nextcord
 import time
+import aiohttp
 from nextcord.ext import commands
 
 bot = commands.Bot(command_prefix=['wisp ', 'w!', 'w.', '!w'], intents=nextcord.Intents.all(), owner_ids=[837730346874306581, 824236988433039391], case_insensitive=True)
