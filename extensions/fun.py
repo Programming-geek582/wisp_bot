@@ -285,7 +285,7 @@ Original text: {text}
         )
         embed.add_field(
             name="Basic info",
-            description=f"""Pokemon ID: {res['id']}
+            value=f"""Pokemon ID: {res['id']}
             Type: {''.join(res['type'])}
             Height: {res['height']}
             Weight: {res['weight']}
