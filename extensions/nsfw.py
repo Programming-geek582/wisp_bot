@@ -5,7 +5,9 @@ from nextcord.ext import commands
 from nextcord.ext.commands.cooldowns import BucketType
 
 class NSFW(commands.Cog, name="nsfw"):
-    ':underage: | NSFW commands, type "gif" as the type and it\'ll be animated'
+    'NSFW commands, type "gif" as the type and it\'ll be animated'
+    
+    COG_EMOJI = "🔞"
     def __init__(self, bot):
         self.bot = bot
 
