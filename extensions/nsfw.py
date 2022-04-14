@@ -12,7 +12,7 @@ class NSFW(commands.Cog, name="nsfw"):
         self.bot = bot
 
     @commands.command()
-    @commands.is_owner()
+    @commands.is_nsfw()
     async def hentai(self, ctx : commands.Context):
         r = requests.get('https://nekos.life/api/v2/img/hentai')
         res = r.json()
