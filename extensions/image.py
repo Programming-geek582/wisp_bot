@@ -500,7 +500,7 @@ class Image(commands.Cog, name="image"):
     async def waifu(self, ctx):
         async with aiohttp.ClientSession() as session:
             waifu = await session.get('https://api.waifu.pics/nsfw/waifu')
-            json = await waifu.json(content_type='text/html')
+            json = await waifu.json(content_type=None)
             embed = nextcord.Embed(title=f"Waifu", colour=0xff0000)
             embed.set_image(url=json['url'])
             embed.set_footer(text=f"Requested by {ctx.author.name}", icon_url=ctx.author.display_avatar)                    
@@ -512,7 +512,7 @@ class Image(commands.Cog, name="image"):
     async def neko(self, ctx):
         async with aiohttp.ClientSession() as session:
             waifu = await session.get('https://api.waifu.pics/nsfw/neko')
-            json = await waifu.json(content_type='text/html')
+            json = await waifu.json(content_type=None)
             embed = nextcord.Embed(title=f"Neko", colour=0xff0000)
             embed.set_image(url=json['url'])
             embed.set_footer(text=f"Requested by {ctx.author.name}", icon_url=ctx.author.display_avatar)                    
