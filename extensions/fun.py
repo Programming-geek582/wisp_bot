@@ -6,6 +6,7 @@ import aiohttp
 from nextcord.ext import commands
 from nextcord.ext.commands.cooldowns import BucketType
 import praw
+import requests
 
 reddit = praw.Reddit(
                     client_id="dMNBCPGr8BgCa6LWhEJbjw",
@@ -266,5 +267,23 @@ Original text: {text}
         embed.set_author(name=f"Requested by {ctx.author.name}", icon_url=ctx.author.display_avatar)
         await ctx.reply(embed=embed)
 
+	@commands.command()
+	@commands.cooldown(1, 30, commands.BucketType.user)
+	async def pokemon(self, ctx : commands.Context, pokemon_name : str = None):
+		if pokemon_name == None:
+			return await ctx.send('You cannot leave `pokemon_name` argument blank')
+
+		r = requests.get(f'https://some-random-api.ml/pokedex?pokemon={pokemon_name.lower()}')
+		res = r.json()
+		embed = nextcord.Embed(
+			title=res['name'], 
+			description=f"""Pokemon description:
+			`{res['description']}`
+			Id: {res['id']}
+			Type: {res['type']}""", 
+			colour=0xff0000
+		)
+		await ctx.send(embed=embed)
+	
 def setup(bot):
     bot.add_cog(Fun(bot))
