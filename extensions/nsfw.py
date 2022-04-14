@@ -67,10 +67,10 @@ class NSFW(commands.Cog, name="nsfw"):
         
     @commands.command()
     @commands.is_nsfw()
-    async def hentai(self, ctx : commands.Context):
-        r = requests.get('https://nekos.life/api/v2/img/hentai')
+    async def lewdkemo(self, ctx : commands.Context):
+        r = requests.get('https://nekos.life/api/v2/img/lewdkemo')
         res = r.json()
-        embed = nextcord.Embed(title="Hentai", colour=0xff0000)
+        embed = nextcord.Embed(title="Lewd kemo", colour=0xff0000)
         embed.set_image(url=res['url'])
         await ctx.send(embed=embed)
 
