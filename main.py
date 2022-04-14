@@ -40,7 +40,7 @@ async def on_message(message : nextcord.Message):
         request = await session.get(f"https://some-random-api.ml/chatbot?message={message.content}&key={os.getenv('APIKEY')}")
         response = await request.json()
 
-    await message.channel.send(response['response'])
+#     await message.channel.send(response['response'])
     await bot.process_commands(message)
 
 bot.run(os.getenv("TOKEN"))
