@@ -128,10 +128,10 @@ This cog has no commands
 
     async def on_help_command_error(self, ctx, error):
         if isinstance(error, commands.CommandInvokeError):
-            embed = nextcord.Embed(description=f"{str(error.original)}")
+            embed = nextcord.Embed(description=f"{str(error.original)}", colour=0xff0000)
             embed.set_footer(text=f"Command requested by {ctx.author}", icon_url=ctx.author.avatar.url)
 
-            await ctx.send(embed=embed, colour=0xff0000)
+            await ctx.send(embed=embed)
 
 
 class Help(commands.Cog):
