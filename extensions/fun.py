@@ -305,7 +305,7 @@ Original text: {text}
             ```"""
         )
         embed.add_field(
-            title="Egg groups",
+            name="Egg groups",
             value=f"""```yaml
             {egg_groups}
             ```"""
