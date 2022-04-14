@@ -300,7 +300,7 @@ Original text: {text}
         )
         embed.add_field(
             name="Abilities",
-            description=f"""```yaml
+            value=f"""```yaml
             {abilities}
             ```"""
         )
