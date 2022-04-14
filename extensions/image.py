@@ -526,7 +526,7 @@ class Image(commands.Cog, name="image"):
 	
        	member = ctx.author
        	async with aiohttp.ClientSession() as session:
-            async with session.get(f'https://some-random-api.ml/canvas/tweet?avatar={member.avatar.with_format("png")}&username={member.name}&displayname={member.display_name}&comment={comment}') as af:
+            async with session.get(f'https://some-random-api.ml/canvas/tweet?avatar={ctx.author.avatar.with_format("png")}&username={ctx.author.name}&displayname={ctx.author.display_name}&comment={comment}') as af:
                 if 300 > af.status >= 200:
                     fp = io.BytesIO(await af.read())
                     file = nextcord.File(fp, "tweet.png")
