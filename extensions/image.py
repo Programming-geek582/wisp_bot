@@ -523,9 +523,7 @@ class Image(commands.Cog, name="image"):
     async def tweet(self, ctx, *, comment : str = None):
         if comment == None:
             return await ctx.send('Pls say something to send in the tweet')
-        if member == None:
-            member = ctx.author
-
+	member = ctx.author
         async with aiohttp.ClientSession() as session:
             async with session.get(f'https://some-random-api.ml/canvas/tweet?avatar={member.avatar.with_format("png")}&username={member.name}&displayname={member.display_name}&comment={comment}') as af:
                 if 300 > af.status >= 200:
