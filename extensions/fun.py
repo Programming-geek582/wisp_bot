@@ -276,17 +276,20 @@ Original text: {text}
         r = requests.get(f'https://some-random-api.ml/pokedex?pokemon={pokemon_name}')
         res = r.json()
         evolution_line = res['family']['evolutionLine']
+        species = "\n".join(res['species'])
+        abilities = "\n".join(res['abilities'])
+        egg_groups = "\n".join(res['egg_groups'])
         embed = nextcord.Embed(
             title=res['name'], 
             description=f"""Pokemon ID: {res['id']}
             Type: {''.join(res['type'])}
             Species:
             ```yaml
-{'\n'.join(res['species'])}
+{species}
             ```
             Abilities:
             ```yaml
-{'\n'.join(res['abilities'])}
+{abilities}
             ```
             Height: {res['height']}
             Weight: {res['weight']}
@@ -294,7 +297,7 @@ Original text: {text}
             Gender: {''.join(res['gender'])}
             Egg groups:
             ```yaml
-{'\n'.join(res['egg_groups'])}
+{egg_groups}
             ```
             **Statistics**
             Health points: {res['stats']['hp']}
