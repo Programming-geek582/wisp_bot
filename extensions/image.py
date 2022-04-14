@@ -1,7 +1,7 @@
 import nextcord
 import aiohttp
 import io
-import json
+import requests
 from nextcord.ext import commands
 from nextcord.ext.commands import BucketType
 
@@ -194,10 +194,9 @@ class Image(commands.Cog, name="image"):
             else:
                 member = ctx.author
                 return await ctx.send("You can't hug yourself!")
-            
-        async with aiohttp.ClientSession() as session:
-            request = await session.get('https://api.waifu.pics/sfw/hug')
-            json = await request.json()
+        
+        request = requests.get('https://api.waifu.pics/sfw/hug')
+        json = request.json()
 
         embed = nextcord.Embed(title=f"{ctx.author.name} hugged {member.name}")
         embed.set_image(url=json['url'])
@@ -214,9 +213,8 @@ class Image(commands.Cog, name="image"):
                 member = ctx.author
                 return await ctx.send("You can't pat yourself!")
             
-        async with aiohttp.ClientSession() as session:
-            request = await session.get('https://api.waifu.pics/sfw/pat')
-            json = await request.json()
+        request = requests.get('https://api.waifu.pics/sfw/pat')
+        json = request.json()
 
         embed = nextcord.Embed(title=f"{ctx.author.name} patted {member.name}")
         embed.set_image(url=json['url'])
@@ -233,9 +231,9 @@ class Image(commands.Cog, name="image"):
                 member = ctx.author
                 return await ctx.send("You can't kiss yourself!")
             
-        async with aiohttp.ClientSession() as session:
-            request = await session.get('https://api.waifu.pics/sfw/kiss')
-            json = await request.json()
+
+        request = requests.get('https://api.waifu.pics/sfw/kiss')
+        json = request.json()
 
         embed = nextcord.Embed(title=f"{ctx.author.name} kissed {member.name}")
         embed.set_image(url=json['url'])
@@ -252,9 +250,9 @@ class Image(commands.Cog, name="image"):
                 member = ctx.author
                 return await ctx.send("You can't pat yourself!")
             
-        async with aiohttp.ClientSession() as session:
-            request = await session.get('https://api.waifu.pics/sfw/pat')
-            json = await request.json()
+
+        request = requests.get('https://api.waifu.pics/sfw/pat')
+        json = request.json()
 
         embed = nextcord.Embed(title=f"{ctx.author.name} patted {member.name}")
         embed.set_image(url=json['url'])
@@ -271,9 +269,8 @@ class Image(commands.Cog, name="image"):
                 member = ctx.author
                 return await ctx.send("You can't lick yourself!")
             
-        async with aiohttp.ClientSession() as session:
-            request = await session.get('https://api.waifu.pics/sfw/lick')
-            json = await request.json()
+        request = requests.get('https://api.waifu.pics/sfw/lick')
+        json = request.json()
 
         embed = nextcord.Embed(title=f"{ctx.author.name} licked {member.name}")
         embed.set_image(url=json['url'])
@@ -290,9 +287,9 @@ class Image(commands.Cog, name="image"):
                 member = ctx.author
                 return await ctx.send("You can't bonk yourself!")
             
-        async with aiohttp.ClientSession() as session:
-            request = await session.get('https://api.waifu.pics/sfw/bonk')
-            json = await request.json()
+
+        request = requests.get('https://api.waifu.pics/sfw/bonk')
+        json = request.json()
 
         embed = nextcord.Embed(title=f"{ctx.author.name} bonked {member.name}")
         embed.set_image(url=json['url'])
@@ -309,9 +306,9 @@ class Image(commands.Cog, name="image"):
                 member = ctx.author
                 return await ctx.send("You can't yeet yourself!")
 
-        async with aiohttp.ClientSession() as session:
-            request = await session.get('https://api.waifu.pics/sfw/yeet')
-            json = await request.json()
+
+        request = requests.get('https://api.waifu.pics/sfw/yeet')
+        json = request.json()
 
         embed = nextcord.Embed(title=f"{ctx.author.name} yeeted {member.name}")
         embed.set_image(url=json['url'])
@@ -328,9 +325,9 @@ class Image(commands.Cog, name="image"):
                 member = ctx.author
                 return await ctx.send("You can't hug yourself!")
 
-        async with aiohttp.ClientSession() as session:
-            request = await session.get('https://api.waifu.pics/sfw/wave')
-            json = await request.json()
+
+        request = requests.get('https://api.waifu.pics/sfw/wave')
+        json = request.json()
 
         embed = nextcord.Embed(title=f"{ctx.author.name} waved at {member.name}")
         embed.set_image(url=json['url'])
@@ -347,9 +344,8 @@ class Image(commands.Cog, name="image"):
                 member = ctx.author
                 return await ctx.send("You can't high five yourself!")
 
-        async with aiohttp.ClientSession() as session:
-            request = await session.get('https://api.waifu.pics/sfw/highfive')
-            json = await request.json()
+        request = requests.get('https://api.waifu.pics/sfw/highfive')
+        json = request.json()
 
         embed = nextcord.Embed(title=f"{ctx.author.name} high fived {member.name}")
         embed.set_image(url=json['url'])
@@ -366,9 +362,8 @@ class Image(commands.Cog, name="image"):
                 member = ctx.author
                 return await ctx.send("You can't bite yourself!")
 
-        async with aiohttp.ClientSession() as session:
-            request = await session.get('https://api.waifu.pics/sfw/bite')
-            json = await request.json()
+        request = requests.get('https://api.waifu.pics/sfw/bite')
+        json = request.json()
 
         embed = nextcord.Embed(title=f"{ctx.author.name} bit {member.name}")
         embed.set_image(url=json['url'])
@@ -524,8 +519,7 @@ class Image(commands.Cog, name="image"):
         if comment == None:
             return await ctx.send('Pls say something to send in the tweet')
 	
-       	member = ctx.author
-       	async with aiohttp.ClientSession() as session:
+        async with aiohttp.ClientSession() as session:
             async with session.get(f'https://some-random-api.ml/canvas/tweet?avatar={ctx.author.avatar.with_format("png")}&username={ctx.author.name}&displayname={ctx.author.display_name}&comment={comment}') as af:
                 if 300 > af.status >= 200:
                     fp = io.BytesIO(await af.read())
