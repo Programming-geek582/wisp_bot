@@ -518,5 +518,21 @@ class Image(commands.Cog, name="image"):
             embed.set_footer(text=f"Requested by {ctx.author.name}", icon_url=ctx.author.display_avatar)                    
             await ctx.send(embed=embed)
 
+    @commands.command(help="Tweets the given message")
+    @commands.cooldown(1, 5, BucketType.member)
+    async def tweet(self, ctx, member : nextcord.Member=None, comment : str = None):
+        if comment == None:
+            return await ctx.send('Pls say something to send in the tweet')
+        if member == None:
+            member = ctx.author
+
+        async with aiohttp.ClientSession() as session:
+            async with session.get(f'https://some-random-api.ml/canvas/tweet?avatar={member.avatar.with_format("png")}&username={member.name}&displayname={member.display_name}&comment={comment}') as af:
+                if 300 > af.status >= 200:
+                    fp = io.BytesIO(await af.read())
+                    file = nextcord.File(fp, "tweet.png")
+
+                    await ctx.send(file=file)
+		
 def setup(bot: commands.Bot):
     bot.add_cog(Image(bot))
