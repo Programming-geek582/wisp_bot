@@ -36,7 +36,7 @@ async def on_message(message : nextcord.Message):
             await message.reply('Stop sending messages in uppercase nab')
 	
     async with aiohttp.ClientSession() as session:
-        request = session.get(f'https://some-random-api.ml/chatbot?message={message.content}&key={os.getenv('APIKEY')}')
+        request = session.get(f"https://some-random-api.ml/chatbot?message={message.content}&key={os.getenv('APIKEY')}")
         response = request.json()
 
     await message.channel.send(response['response'])
