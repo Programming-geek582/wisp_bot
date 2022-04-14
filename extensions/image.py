@@ -520,7 +520,7 @@ class Image(commands.Cog, name="image"):
 
     @commands.command(help="Tweets the given message")
     @commands.cooldown(1, 5, BucketType.member)
-    async def tweet(self, ctx, member : nextcord.Member=None, *, comment : str = None):
+    async def tweet(self, ctx, *, comment : str = None):
         if comment == None:
             return await ctx.send('Pls say something to send in the tweet')
         if member == None:
