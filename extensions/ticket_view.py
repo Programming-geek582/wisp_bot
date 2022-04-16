@@ -1,12 +1,24 @@
 import nextcord
 import aiosqlite
+import time
 from typing import Optional
+
+class ticket_delete_view(nextcord.ui.View):
+    def __init__(self, *, timeout: Optional[float] = 180):
+        super().__init__(timeout=timeout)
+
+    @nextcord.ui.button(label="Delete ticket", style=nextcord.ButtonStyle.danger, emoji="📜")
+    async def delete_ticket(self, button : nextcord.ui.Button, interaction : nextcord.Interaction):
+        embed = nextcord.Embed(title='Ticket closed', description="Support will be with you shortly", colour=0xff0000)
+        await channel.send(f"{interaction.user.mention}", embed=embed)
+        time.sleep(2)
+        channel = await interaction.channel.delete()
 
 class ticket_create_view(nextcord.ui.View):
     def __init__(self, *, timeout: Optional[float] = 180):
         super().__init__(timeout=timeout)
 
-    @nextcord.ui.button(label="Create ticket", style=nextcord.ButtonStyle.grey, emoji="📜")
+    @nextcord.ui.button(label="Create ticket", style=nextcord.ButtonStyle.primary, emoji="📩")
     async def create_ticket(self, button : nextcord.ui.Button, interaction : nextcord.Interaction):
         async with aiosqlite.connect('tickets.db') as db:
             async with db.cursor() as cursor:
@@ -22,4 +34,4 @@ class ticket_create_view(nextcord.ui.View):
         }
         channel = await interaction.channel.category.create_text_channel(name=f"ticket {data[0]} - {interaction.user.name}", overwrites=overwrites)
         embed = nextcord.Embed(title='Ticket created', description="Support will be with you shortly", colour=0xff0000)
-        await channel.send(f"{interaction.user.mention}", embed=embed)
+        await channel.send(f"{interaction.user.mention}", embed=embed, view=ticket_delete_view())
