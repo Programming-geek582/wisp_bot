@@ -6,7 +6,7 @@ class ticket_create_view(nextcord.ui.View):
     def __init__(self, *, timeout: Optional[float] = 180):
         super().__init__(timeout=timeout)
 
-    @nextcord.ui.Button(label="Create ticket", style=nextcord.ButtonStyle.grey, emoji="📜")
+    @nextcord.ui.button(label="Create ticket", style=nextcord.ButtonStyle.grey, emoji="📜")
     async def create_ticket(self, button : nextcord.ui.Button, interaction : nextcord.Interaction):
         async with aiosqlite.connect('tickets.db') as db:
             async with db.cursor() as cursor:
