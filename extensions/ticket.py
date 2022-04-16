@@ -8,6 +8,7 @@ class Tickets(commands.Cog, name="tickets"):
 	def __init__(self, bot : commands.Bot):
 		self.bot = bot
 
+	COG_EMOJI = "📜"
 	@commands.Cog.listener()
 	async def on_ready():
 		async with aiosqlite.connect('tickets.db') as db:
