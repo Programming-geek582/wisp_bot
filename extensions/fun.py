@@ -239,18 +239,15 @@ Original text: {text}
                         f"{ctx.author.name} broke {member.name}'s neck."]
 
             await ctx.send(f"{random.choice(responses)}")
-
+		
     @commands.command(help="Lets you slap a user")
     @commands.cooldown(1, 30, commands.BucketType.user)
-    async def slap(self, ctx : commands.Context, member : nextcord.Member):
-        embed = nextcord.Embed(title=f"{ctx.author.name} slapped {member.name}", colour=0xff0000)
+    async def roast(self, ctx : commands.Context, member : nextcord.Member):
         async with aiohttp.ClientSession() as session:
             request = await session.get('https://api.waifu.pics/sfw/slap')
             json = await request.json()
-        embed.set_image(url=json['url'])
-        embed.set_author(name=f"Requested by {ctx.author.name}", icon_url=ctx.author.display_avatar)
-        await ctx.send(embed=embed)
-
+        await ctx.send(json['insult'])
+	
     @commands.command(help="Get a random trending meme from reddit")
     async def meme(self, ctx):
         subreddit = reddit.subreddit("memes")
