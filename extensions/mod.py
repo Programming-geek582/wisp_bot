@@ -41,6 +41,30 @@ class Mod(commands.Cog, name="mod"):
         else:
             await ctx.channel.edit(slowmode_delay=seconds, reason=f"This was done by {ctx.author.display_name} by using the slowmode command.")
             await ctx.send(f'Slowmode has successfully updated to {seconds} seconds for channel {ctx.channel.mention}')
+		
+    @commands.command(help="Locks down the given channel(locks the current channel if no channel is given)")
+    @commands.cooldown(1, 30, commands.BucketType.user)
+    @commands.has_permissions(manage_guild=True)
+    @commands.group(invoke_without_command=True)
+    async def lock(self, ctx : commands.Context, channel : nextcord.TextChannel):
+        if channel == None:
+            channel = ctx.channel
+
+        overwrites = {
+            ctx.guild.default_role: nextcord.PermissionOverwrite(send_messages=False)
+        }
+        await channel.set_permissions(ctx.guild.default_role, overwrite=overwrites)
+        await ctx.send(f'Locked down {channel.name}')
+
+    @lock.command(help="Locks down the entire server")
+    async def server(self, ctx : commands.Context):
+        overwrites = {
+            ctx.guild.default_role: nextcord.PermissionOverwrite(send_messages=False)
+        }
+        for channel in ctx.guild.text_channels:
+            await channel.set_permissions(ctx.guild.default_role, overwrite=overwrites)
+
+        await ctx.send(f'Locked down {ctx.guild.name}')
 
 
 def setup(bot : commands.Bot):
