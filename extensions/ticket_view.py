@@ -22,5 +22,5 @@ class ticket_create_view(nextcord.ui.View):
             interaction.guild.default_role: nextcord.PermissionOverwrite(view_channel=False),
             interaction.user: nextcord.PermissionOverwrite(view_channel=True, send_messages=True)
         }
-        await channel.set_permissions(interaction.user, overwrite=overwrites, reason="Ticket created!")
+        await channel.edit(interaction.user, overwrite=overwrites, reason="Ticket created!")
         await channel.send(f"{interaction.user.mention}", embed=embed)
