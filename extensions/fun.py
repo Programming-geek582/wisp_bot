@@ -240,13 +240,7 @@ Original text: {text}
 
             await ctx.send(f"{random.choice(responses)}")
 		
-    @commands.command(help="Lets you slap a user")
-    @commands.cooldown(1, 30, commands.BucketType.user)
-    async def roast(self, ctx : commands.Context, member : nextcord.Member):
-	request = await session.get('https://insult.mattbas.org/api/insult.json')
-	json = await request.json()
-	await ctx.send(json['insult'])
-	
+
     @commands.command(help="Get a random trending meme from reddit")
     async def meme(self, ctx):
         subreddit = reddit.subreddit("memes")
