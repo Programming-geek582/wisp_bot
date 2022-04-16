@@ -22,7 +22,7 @@ class Tickets(commands.Cog, name="tickets"):
 					await cursor.execute('UPDATE tickets SET category = ? AND counter = ? AND channel ? WHERE guild_id = ?', (ctx.channel.category.name, 0, ctx.channel.id, ctx.guild.id))
 				else:
 					await cursor.execute('INSERT INTO tickets(guild_id, category, counter, channel) VALUES (?, ?, ?, ?)', (ctx.guild.id, ctx.channel.category.name, 0, ctx.channel.id))
-		await db.commit()
+			await db.commit()
 		await ctx.send('Tickets have successfully setup. now click the button to test out the ticket system', delete_after=10)
 		embed = nextcord.Embed(title="Create a ticket", description="Create a ticket to contact the server mods, or to report something or whatever you want.", colour=0xff0000)
 		await ctx.send(embed=embed)
