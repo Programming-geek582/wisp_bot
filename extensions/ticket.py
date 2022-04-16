@@ -9,20 +9,13 @@ class Tickets(commands.Cog, name="tickets"):
 		self.bot = bot
 
 	COG_EMOJI = "📜"
-	@commands.Cog.listener()
-	async def on_ready():
-		async with aiosqlite.connect('tickets.db') as db:
-			async with db.cursor() as cursor:
-				await cursor.execute('CREATE TABLE IF NOT EXISTS tickets(guild_id INT, category TEXT, counter INT, channel INT)')
-
-		await db.commit()
-
 	@commands.command()
 	@commands.cooldown(1, 30, commands.BucketType.user)
 	@commands.has_permissions(administrator=True)
 	async def tickets(self, ctx : commands.Context):
 		async with aiosqlite.connect('tickets.db') as db:
 			async with db.cursor() as cursor:
+				await cursor.execute('CREATE TABLE IF NOT EXISTS tickets(guild_id INT, category TEXT, counter INT, channel INT)')
 				await cursor.execute('SELECT category, channel FROM tickets WHERE guild_id = ?', (ctx.guild.id,))
 				data = await cursor.fetchone()
 				if data:
