@@ -18,4 +18,8 @@ class ticket_create_view(nextcord.ui.View):
             await db.commit()
         channel = await interaction.channel.category.create_text_channel(name=f"ticket {data[0]} - {interaction.user.name}")
         embed = nextcord.Embed(title='Ticket created', description="Support will be with you shortly", colour=0xff0000)
+        perms = channel.overwrites_for(interaction.user)
+        perms.view_channel = True
+        perms.send_messages = True
+        await channel.edit(interaction.user, overwrite=perms, reason="Ticket created!")
         await channel.send(f"{interaction.user.mention}", embed=embed)
