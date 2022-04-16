@@ -7,7 +7,7 @@ class ticket_delete_view(nextcord.ui.View):
     def __init__(self, *, timeout: Optional[float] = 180):
         super().__init__(timeout=timeout)
 
-    @nextcord.ui.button(label="Delete ticket", style=nextcord.ButtonStyle.danger, emoji="📜")
+    @nextcord.ui.button(label="Delete ticket", style=nextcord.ButtonStyle.danger, emoji="🔒")
     async def delete_ticket(self, button : nextcord.ui.Button, interaction : nextcord.Interaction):
         embed = nextcord.Embed(title='Ticket closed', description="Support will be with you shortly", colour=0xff0000)
         await channel.send(f"{interaction.user.mention}", embed=embed)
