@@ -19,7 +19,7 @@ class Tickets(commands.Cog, name="tickets"):
 				await cursor.execute('SELECT category, channel FROM tickets WHERE guild_id = ?', (ctx.guild.id,))
 				data = await cursor.fetchone()
 				if data:
-					await cursor.execute('UPDATE tickets SET category = ? AND counter = ? AND channel ? WHERE guild_id = ?', (ctx.channel.category.name, 0, ctx.channel.id, ctx.guild.id))
+					await cursor.execute('UPDATE tickets SET category = ?, counter = ?, channel ? WHERE guild_id = ?', (ctx.channel.category.name, 0, ctx.channel.id, ctx.guild.id))
 				else:
 					await cursor.execute('INSERT INTO tickets(guild_id, category, counter, channel) VALUES (?, ?, ?, ?)', (ctx.guild.id, ctx.channel.category.name, 0, ctx.channel.id))
 			await db.commit()
