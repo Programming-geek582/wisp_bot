@@ -12,6 +12,8 @@ class ticket_create_view(nextcord.ui.View):
             async with db.cursor() as cursor:
                 await cursor.execute('SELECT counter FROM tickets WHERE guild_id = ?', (interaction.guild.id,))
                 data = await cursor.fetchone()
+                counter = data[0]
+                await cursor.execute('UPDATE tickets SET counter = ? WHERE guild_id = ?', (counter + 1, interaction.guild.id,))
 
-        await db.commit()
+            await db.commit()
         await interaction.channel.category.create_text_channel(name=f"ticket {data[0]} - {interaction.user.name}")
