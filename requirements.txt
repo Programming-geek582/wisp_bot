@@ -5,3 +5,4 @@ akinator.py[async]
 dismusic
 jishaku
 nextcord-ext-activities
+aiosqlite
