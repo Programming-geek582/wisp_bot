@@ -10,7 +10,7 @@ class ticket_create_view(nextcord.ui.View):
     async def create_ticket(self, button : nextcord.ui.Button, interaction : nextcord.Interaction):
         async with aiosqlite.connect('tickets.db') as db:
             async with db.cursor() as cursor:
-                await cursor.execute('SELECT counter FROM tickets WHERE guild_id = ?', (interaction.guild.id))
+                await cursor.execute('SELECT counter FROM tickets WHERE guild_id = ?', (interaction.guild.id,))
                 data = await cursor.fetchone()
 
         await db.commit()
