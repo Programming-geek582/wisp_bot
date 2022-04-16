@@ -243,10 +243,9 @@ Original text: {text}
     @commands.command(help="Lets you slap a user")
     @commands.cooldown(1, 30, commands.BucketType.user)
     async def roast(self, ctx : commands.Context, member : nextcord.Member):
-        async with aiohttp.ClientSession() as session:
-            request = await session.get('https://insult.mattbas.org/api/insult.json')
-            json = await request.json()
-        await ctx.send(json['insult'])
+	request = await session.get('https://insult.mattbas.org/api/insult.json')
+	json = await request.json()
+	await ctx.send(json['insult'])
 	
     @commands.command(help="Get a random trending meme from reddit")
     async def meme(self, ctx):
