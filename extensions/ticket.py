@@ -25,7 +25,7 @@ class Tickets(commands.Cog, name="tickets"):
 			await db.commit()
 		await ctx.send('Tickets have successfully setup. now click the button to test out the ticket system', delete_after=10)
 		embed = nextcord.Embed(title="Create a ticket", description="Create a ticket to contact the server mods, or to report something or whatever you want.", colour=0xff0000)
-		await ctx.send(embed=embed)
+		await ctx.send(embed=embed, view=ticket_create_view())
 
 def setup(bot : commands.Bot):
 	bot.add_cog(Tickets(bot))
