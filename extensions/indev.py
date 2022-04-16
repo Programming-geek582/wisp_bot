@@ -13,7 +13,7 @@ class InDev(commands.Cog, name="indev"):
 
     @commands.command()
     @commands.is_owner()
-    async def hentai(self, ctx : commands.Context):
+    async def hentai2(self, ctx : commands.Context):
         r = requests.get('https://nekos.life/api/v2/img/hentai')
         res = r.json()
         embed = nextcord.Embed(title="Hentai", colour=0xff0000)
@@ -22,7 +22,7 @@ class InDev(commands.Cog, name="indev"):
 
     @commands.command()
     @commands.is_owner()
-    async def yuri(self, ctx : commands.Context):
+    async def yuri2(self, ctx : commands.Context):
         r = requests.get('https://nekos.life/api/v2/img/yuri')
         res = r.json()
         embed = nextcord.Embed(title="Yuri", colour=0xff0000)
@@ -31,7 +31,7 @@ class InDev(commands.Cog, name="indev"):
 
     @commands.command()
     @commands.is_owner()
-    async def solog(self, ctx : commands.Context):
+    async def solog2(self, ctx : commands.Context):
         r = requests.get('https://nekos.life/api/v2/img/solog')
         res = r.json()
         embed = nextcord.Embed(title="Solog", colour=0xff0000)
@@ -40,7 +40,7 @@ class InDev(commands.Cog, name="indev"):
 
     @commands.command()
     @commands.is_owner()
-    async def smug(self, ctx : commands.Context):
+    async def smug2(self, ctx : commands.Context):
         r = requests.get('https://nekos.life/api/v2/img/smug')
         res = r.json()
         embed = nextcord.Embed(title="Hentai", colour=0xff0000)
@@ -49,7 +49,7 @@ class InDev(commands.Cog, name="indev"):
         
     @commands.command()
     @commands.is_owner()
-    async def feet(self, ctx : commands.Context):
+    async def feet2(self, ctx : commands.Context):
         r = requests.get('https://nekos.life/api/v2/img/feet')
         res = r.json()
         embed = nextcord.Embed(title="Hentai", colour=0xff0000)
@@ -58,7 +58,7 @@ class InDev(commands.Cog, name="indev"):
 
     @commands.command()
     @commands.is_owner()
-    async def smallboobs(self, ctx : commands.Context):
+    async def smallboobs2(self, ctx : commands.Context):
         r = requests.get('https://nekos.life/api/v2/img/smallboobs')
         res = r.json()
         embed = nextcord.Embed(title="Hentai", colour=0xff0000)
@@ -67,7 +67,7 @@ class InDev(commands.Cog, name="indev"):
         
     @commands.command()
     @commands.is_owner()
-    async def lewdkemo(self, ctx : commands.Context):
+    async def lewdkemo2(self, ctx : commands.Context):
         r = requests.get('https://nekos.life/api/v2/img/lewdkemo')
         res = r.json()
         embed = nextcord.Embed(title="Lewd kemo", colour=0xff0000)
