@@ -33,7 +33,7 @@ class ticket_create_view(nextcord.ui.View):
             interaction.guild.default_role: nextcord.PermissionOverwrite(view_channel=False),
             interaction.user: nextcord.PermissionOverwrite(read_messages=True, send_messages=True)
         }
-        support_role = interaction.client.get_role(support_role_id)
+        support_role = interaction.guild.get_role(support_role_id)
         channel = await interaction.channel.category.create_text_channel(name=f"ticket {data[0]} - {interaction.user.name}", overwrites=overwrites)
         embed = nextcord.Embed(title='Ticket created', description="Support will be with you shortly", colour=0xff0000)
         await channel.send(support_role.mention, delete_after=1)
