@@ -25,7 +25,7 @@ class Tickets(commands.Cog, name="tickets"):
 				else:
 					await cursor.execute('INSERT INTO tickets(guild_id, category, counter, channel, support_role_id) VALUES (?, ?, ?, ?, ?)', (ctx.guild.id, ctx.channel.category.name, 0, ctx.channel.id, support_role_id.id,))
 			await db.commit()
-		await ctx.send('Tickets have successfully setup. now click the button to test out the ticket system', delete_after=2, ephermal=True)
+		await ctx.send('Tickets have successfully setup. now click the button to test out the ticket system', delete_after=2)
 		embed = nextcord.Embed(title="Create a ticket", description="Create a ticket to contact the server mods, or to report something or whatever you want.", colour=0xff0000)
 		await ctx.send(embed=embed, view=ticket_create_view())
 
