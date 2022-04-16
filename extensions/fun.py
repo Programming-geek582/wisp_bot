@@ -244,7 +244,7 @@ Original text: {text}
     @commands.cooldown(1, 30, commands.BucketType.user)
     async def roast(self, ctx : commands.Context, member : nextcord.Member):
         async with aiohttp.ClientSession() as session:
-            request = await session.get('https://api.waifu.pics/sfw/slap')
+            request = await session.get('https://insult.mattbas.org/api/insult.json')
             json = await request.json()
         await ctx.send(json['insult'])
 	
